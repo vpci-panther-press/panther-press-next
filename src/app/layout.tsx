@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Atkinson_Hyperlegible, Inter, Manrope } from "next/font/google"
+import localFont from 'next/font/local'
 import "./globals.css"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
@@ -16,6 +17,12 @@ const atkinson = Atkinson_Hyperlegible({
 	weight: ["400", "700"],
 	display: "swap",
 })
+
+const argentCf = localFont({
+	src: './ArgentPixelCF-Regular.woff',
+	variable: '--font-argent-cf',
+})
+
 
 export const metadata: Metadata = {
 	title: siteConfig.title,
@@ -39,7 +46,7 @@ export default function RootLayout({
 					<script defer src="https://analytics.picafe.me/script.js" data-website-id="4d93445d-1e7a-4ae5-ad21-31e821a4c747"></script>
 				)}
 			</head>
-			<body className={`${inter.variable} ${manrope.variable} ${atkinson.variable} h-full w-full bg-zinc-200 bg-[url('/paper-light.jpg')] bg-repeat text-stone-950 mix-blend-multiply dark:bg-zinc-900 dark:bg-[url('/topography-dark.svg')] dark:text-white dark:mix-blend-normal`}>
+			<body className={`${inter.variable} ${manrope.variable} ${atkinson.variable} ${argentCf.variable} h-full w-full bg-zinc-200 bg-[url('/paper-light.jpg')] bg-repeat text-stone-950 mix-blend-multiply dark:bg-zinc-900 dark:bg-[url('/topography-dark.svg')] dark:text-white dark:mix-blend-normal`}>
 				<ThemeProvider>
 					<main className="mt-4 mb-10 grid gap-12 overflow-hidden px-5 antialiased sm:mx-auto sm:max-w-2xl sm:px-8 md:max-w-6xl md:overflow-visible lg:px-10">
 						<Navbar />

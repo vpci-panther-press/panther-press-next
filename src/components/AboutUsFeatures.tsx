@@ -16,7 +16,7 @@ export function AboutUsFeatures() {
 						height={900}
 					/>
 
-					<p style={{ fontFamily: "ArgentCF" }} className="absolute bottom-20 left-20 hidden max-w-md text-3xl font-bold text-white sm:inline-block sm:text-4xl">
+					<p className="font-argent-cf absolute bottom-20 left-20 hidden max-w-md text-3xl font-bold text-white sm:inline-block sm:text-4xl">
 						The official student newspaper of Victoria Park Collegiate Institute.
 					</p>
 				</div>

@@ -11,6 +11,7 @@
 	--font-sans: var(--font-inter);
 	--font-atkinson: var(--font-atkinson);
 	--font-manrope: var(--font-manrope);
+	--font-argent-cf: var(--font-argentCf);
 
 	--radius: 0.5rem;
 	--radius-md: calc(var(--radius) - 2px);
@@ -131,22 +132,7 @@
 	transition: all 0.2s ease-in-out;
 }
 
-@font-face {
-	font-family: "ArgentCF";
-	src: url("/ArgentPixelCF-Regular.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-}
 
 body {
 	font-family: var(--font-sans);
-}
-
-.font-atkinson {
-	font-family: var(--font-atkinson);
-}
-
-.font-manrope {
-	font-family: var(--font-manrope);
 }
