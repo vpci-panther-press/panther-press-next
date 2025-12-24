@@ -33,6 +33,14 @@
 
 	/* Grid template columns */
 	--grid-list: repeat(auto-fill, minmax(400px, max-content));
+
+	/* define initial colours for seasonal colors, overwriten in layout.tsx */
+	--color-cs-primary: #69893e;
+  	--color-cs-secondary: #92b573;
+  	--color-cs-tertiary: #a482a3;
+
+	--primary: var(--color-cs-primary);
+  	--secondary: var(--color-cs-secondary);
 }
 
 :root {
@@ -58,8 +66,7 @@
 	--chart-3: 197 37% 24%;
 	--chart-4: 43 74% 66%;
 	--chart-5: 27 87% 67%;
-	--primary: var(--color-cs-primary);
-  	--secondary: var(--color-cs-secondary);
+
 }
 
 .dark {

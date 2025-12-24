@@ -28,7 +28,7 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	const { primary, secondary, tertiary } = getSeasonColors()
-	const seasonalStyles = `:root { --color-cs-primary: ${primary}; --color-cs-secondary: ${secondary}; --color-cs-tertiary: ${tertiary}; --primary: var(--color-cs-primary); --secondary: var(--color-cs-secondary); }`
+	const seasonalStyles = `:root { --color-cs-primary: ${primary}; --color-cs-secondary: ${secondary}; --color-cs-tertiary: ${tertiary}; }`
 
 	return (
 		<html lang={siteConfig.lang} className="scroll-smooth" suppressHydrationWarning>

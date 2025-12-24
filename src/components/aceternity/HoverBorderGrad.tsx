@@ -25,6 +25,8 @@ export default function HoverBorderGradient({
 >) {
 	const [hovered, setHovered] = useState<boolean>(false)
 	const [direction, setDirection] = useState<Direction>("TOP")
+	const [isClient, setIsClient] = useState(false)
+	const [animationsEnabled, setAnimationsEnabled] = useState(false)
 
 	const movingMap: Record<Direction, string> = {
 		TOP: "radial-gradient(20.7% 50% at 50% 0%, var(--secondary) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -37,6 +39,11 @@ export default function HoverBorderGradient({
 
 	const highlight =
 		"radial-gradient(75% 181.15942028985506% at 50% 50%, var(--primary) 0%, rgba(255, 165, 0, 0) 100%)"
+
+	useEffect(() => {
+		setIsClient(true)
+		setAnimationsEnabled(localStorage.getItem("animations") === "true")
+	}, [])
 
 	useEffect(() => {
 		const rotateDirection = (currentDirection: Direction): Direction => {
@@ -73,7 +80,7 @@ export default function HoverBorderGradient({
 			>
 				{children}
 			</div>
-			{typeof window !== "undefined" && localStorage.getItem("animations") === "true" ? (
+			{isClient && animationsEnabled ? (
 				<motion.div
 					className={cn("absolute inset-0 z-0 flex-none overflow-hidden rounded-[inherit]")}
 					style={{
