@@ -25,36 +25,40 @@ export default function HoverBorderGradient({
 >) {
 	const [hovered, setHovered] = useState<boolean>(false)
 	const [direction, setDirection] = useState<Direction>("TOP")
-	const [isClient, setIsClient] = useState(false)
-	const [animationsEnabled, setAnimationsEnabled] = useState(false)
+
+	const rotateDirection = (currentDirection: Direction): Direction => {
+		const directions: Direction[] = ["TOP", "LEFT", "BOTTOM", "RIGHT"]
+		const currentIndex = directions.indexOf(currentDirection)
+		const nextIndex = clockwise
+			? (currentIndex - 1 + directions.length) % directions.length
+			: (currentIndex + 1) % directions.length
+		return directions[nextIndex]
+	}
+
+	// Get CSS custom property values
+	const getColorVariable = (varName: string): string => {
+		if (typeof window !== "undefined") {
+			return getComputedStyle(document.documentElement).getPropertyValue(varName).trim()
+		}
+		return ""
+	}
+
+	const primaryColor = getColorVariable("--color-cs-primary")
+	const secondaryColor = getColorVariable("--color-cs-secondary")
 
 	const movingMap: Record<Direction, string> = {
-		TOP: "radial-gradient(20.7% 50% at 50% 0%, var(--secondary) 0%, rgba(255, 255, 255, 0) 100%)",
-		LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, var(--secondary) 0%, rgba(255, 255, 255, 0) 100%)",
+		TOP: `radial-gradient(20.7% 50% at 50% 0%, ${secondaryColor} 0%, rgba(255, 255, 255, 0) 100%)`,
+		LEFT: `radial-gradient(16.6% 43.1% at 0% 50%, ${secondaryColor} 0%, rgba(255, 255, 255, 0) 100%)`,
 		BOTTOM:
-			"radial-gradient(20.7% 50% at 50% 100%, var(--secondary) 0%, rgba(255, 255, 255, 0) 100%)",
+			`radial-gradient(20.7% 50% at 50% 100%, ${secondaryColor} 0%, rgba(255, 255, 255, 0) 100%)`,
 		RIGHT:
-			"radial-gradient(16.2% 41.199999999999996% at 100% 50%, var(--secondary) 0%, rgba(255, 255, 255, 0) 100%)",
+			`radial-gradient(16.2% 41.199999999999996% at 100% 50%, ${secondaryColor} 0%, rgba(255, 255, 255, 0) 100%)`,
 	}
 
 	const highlight =
-		"radial-gradient(75% 181.15942028985506% at 50% 50%, var(--primary) 0%, rgba(255, 165, 0, 0) 100%)"
+		`radial-gradient(75% 181.15942028985506% at 50% 50%, ${primaryColor} 0%, rgba(255, 165, 0, 0) 100%)`
 
 	useEffect(() => {
-		setIsClient(true)
-		setAnimationsEnabled(localStorage.getItem("animations") === "true")
-	}, [])
-
-	useEffect(() => {
-		const rotateDirection = (currentDirection: Direction): Direction => {
-			const directions: Direction[] = ["TOP", "LEFT", "BOTTOM", "RIGHT"]
-			const currentIndex = directions.indexOf(currentDirection)
-			const nextIndex = clockwise
-				? (currentIndex - 1 + directions.length) % directions.length
-				: (currentIndex + 1) % directions.length
-			return directions[nextIndex]
-		}
-
 		if (!hovered) {
 			const interval = setInterval(() => {
 				setDirection((prevState) => rotateDirection(prevState))
@@ -67,36 +71,38 @@ export default function HoverBorderGradient({
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
 			className={cn(
-				"relative flex h-min flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible rounded-full bg-black/20 box-decoration-clone p-px transition duration-500 dark:bg-white/20",
+				"relative flex rounded-full content-center bg-black/20 hover:bg-black/10 transition duration-500 border dark:border-none items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit",
 				containerClassName,
 			)}
 			{...props}
 		>
 			<div
 				className={cn(
-					"z-10 w-full rounded-[inherit] bg-zinc-200 px-4 py-2 dark:bg-zinc-900 dark:text-white",
+					"w-auto text-zinc-700 dark:text-white z-10 bg-black px-4 py-2 rounded-[inherit]",
 					className,
 				)}
 			>
 				{children}
 			</div>
-			{isClient && animationsEnabled ? (
-				<motion.div
-					className={cn("absolute inset-0 z-0 flex-none overflow-hidden rounded-[inherit]")}
-					style={{
-						filter: "blur(2px)",
-						position: "absolute",
-						width: "100%",
-						height: "100%",
-					}}
-					initial={{ background: movingMap[direction] }}
-					animate={{
-						background: hovered ? [movingMap[direction], highlight] : movingMap[direction],
-					}}
-					transition={{ ease: "linear", duration: duration ?? 1 }}
-				/>
-			) : null}
-			<div className="absolute inset-[2px] z-1 flex-none rounded-[100px] bg-zinc-200 dark:bg-zinc-900" />
+			<motion.div
+				className={cn(
+					"flex-none inset-0 overflow-hidden absolute z-0 rounded-[inherit]"
+				)}
+				style={{
+					filter: "blur(2px)",
+					position: "absolute",
+					width: "100%",
+					height: "100%",
+				}}
+				initial={{ background: movingMap[direction] }}
+				animate={{
+					background: hovered
+						? [movingMap[direction], highlight]
+						: movingMap[direction],
+				}}
+				transition={{ ease: "linear", duration: duration ?? 1 }}
+			/>
+			<div className="bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]" />
 		</Tag>
 	)
 }
