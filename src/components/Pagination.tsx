@@ -66,7 +66,7 @@ export function Pagination({
 	const activeClasses = "bg-zinc-200 text-zinc-900 dark:bg-zinc-600 dark:text-white"
 
 	return (
-		<nav aria-label="Pagination" className={className ? className : "flex items-center justify-center gap-x-1"}>
+		<nav aria-label="Pagination" className={className ? className : "flex flex-wrap items-center justify-center gap-x-1 gap-y-2"}>
 			{/* Previous */}
 			{currentPage > 1 ? (
 				<Link prefetch={false} href={makeHref(currentPage - 1)} rel="prev" className={`${baseItemClasses} ${inactiveClasses}`}>
@@ -85,7 +85,7 @@ export function Pagination({
 					>
 						<path d="m15 18-6-6 6-6"></path>
 					</svg>
-					<span className="sr-only">Previous</span>
+					<span className="">Prev</span>
 				</Link>
 			) : (
 				<span aria-disabled="true" className={`${baseItemClasses} disabled:opacity-50 text-zinc-500 dark:text-zinc-400`}>
@@ -104,12 +104,12 @@ export function Pagination({
 					>
 						<path d="m15 18-6-6 6-6"></path>
 					</svg>
-					<span className="sr-only">Previous</span>
+					<span className="">Prev</span>
 				</span>
 			)}
 
 			{/* Page items */}
-			<ul className="flex items-center gap-x-1" role="list">
+			<ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2" role="list">
 				{items.map((item, idx) => {
 					if (item === "dots") {
 						return (
@@ -138,7 +138,7 @@ export function Pagination({
 			{/* Next */}
 			{currentPage < lastPage ? (
 				<Link prefetch={false} href={makeHref(currentPage + 1)} rel="next" className={`${baseItemClasses} ${inactiveClasses}`}>
-					<span className="sr-only">Next</span>
+					<span className="">Next</span>
 					<svg
 						className="h-3.5 w-3.5 shrink-0"
 						xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +157,7 @@ export function Pagination({
 				</Link>
 			) : (
 				<span aria-disabled="true" className={`${baseItemClasses} disabled:opacity-50 text-zinc-500 dark:text-zinc-400`}>
-					<span className="sr-only">Next</span>
+					<span className="text-zinc-400 dark">Next</span>
 					<svg
 						className="h-3.5 w-3.5 shrink-0"
 						xmlns="http://www.w3.org/2000/svg"

@@ -105,8 +105,6 @@ async function renderArticlePage(slug: string) {
 					</div>
 				</div>
 			</header>
-
-			
 				<Image
 					src={`${directusAssetsUrl + post.heroImage}`}
 					width={1000}
