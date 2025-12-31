@@ -97,17 +97,17 @@ pnpm run preview
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                | Action                                                      |
-| :--------------------- | :---------------------------------------------------------- |
-| `pnpm install`         | Installs dependencies                                       |
-| `pnpm dev`             | Starts local dev server at `localhost:3000`                 |
-| `pnpm build`           | Build your production site to `./.next/`                    |
-| `pnpm start`           | Preview your build locally with Next.js                     |
-| `pnpm lint`            | Lint with ESLint                                            |
-| `pnpm deploy`          | Build and deploy to Cloudflare Pages                        |
-| `pnpm upload`          | Build and upload to Cloudflare (without deploying)          |
-| `pnpm preview`         | Preview production build on Cloudflare runtime locally      |
-| `pnpm cf-typegen`      | Generate TypeScript types for Cloudflare environment        |
+| Command           | Action                                                 |
+| :---------------- | :----------------------------------------------------- |
+| `pnpm install`    | Installs dependencies                                  |
+| `pnpm dev`        | Starts local dev server at `localhost:3000`            |
+| `pnpm build`      | Build your production site to `./.next/`               |
+| `pnpm start`      | Preview your build locally with Next.js                |
+| `pnpm lint`       | Lint with ESLint                                       |
+| `pnpm deploy`     | Build and deploy to Cloudflare Pages                   |
+| `pnpm upload`     | Build and upload to Cloudflare (without deploying)     |
+| `pnpm preview`    | Preview production build on Cloudflare runtime locally |
+| `pnpm cf-typegen` | Generate TypeScript types for Cloudflare environment   |
 
 ## 📚 Learn More
 

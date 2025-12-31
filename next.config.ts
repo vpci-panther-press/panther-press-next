@@ -1,15 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	images: {
-		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "directus.picafe.me",
-				pathname: "/assets/**",
-			},
-		],
-	},
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "directus.picafe.me",
+        pathname: "/assets/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
