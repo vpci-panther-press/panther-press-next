@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@directus/sdk": "^20.3.0",
-    "@opennextjs/cloudflare": "^1.14.7",
+    "@opennextjs/cloudflare": "^1.14.8",
     "@pagefind/default-ui": "^1.4.0",
     "@radix-ui/react-label": "^2.1.8",
     "class-variance-authority": "^0.7.1",
